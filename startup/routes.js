@@ -1,8 +1,9 @@
-const morgan = require("morgan");
 const express = require("express");
-const helmet = require("helmet");
+const morgan = require("morgan");
 const cors = require("cors");
+const helmet = require("helmet");
 
+const courseRoutes = require("../routes/courseRoutes");
 const errorHandler = require("../middleware/error");
 
 module.exports = function (app) {
@@ -15,7 +16,7 @@ module.exports = function (app) {
   }
 
   // Routes
-  // app.use("/api/courses", courseRoutes);
+  app.use("/api/courses", courseRoutes);
 
   // Error Handler
   app.use(errorHandler);
