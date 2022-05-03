@@ -19,12 +19,40 @@ router.get("/", async (req, res) => {
     include: [
       {
         model: Topic,
+        attributes: ["name"],
         through: { attributes: [] },
       },
     ],
   });
 
-  return res.send(courses);
+  const coursesMap = courses.map((course) => {
+    const json = course.toJSON();
+    return {
+      ...json,
+      topics: json.topics.map((topic) => topic.name),
+    };
+  });
+
+  return res.send(coursesMap);
+});
+
+router.get("/:id", async (req, res) => {
+  const course = await Course.findOne({
+    where: { id: req.params.id },
+    include: [
+      {
+        model: Topic,
+        through: { attributes: [] },
+      },
+    ],
+  });
+
+  if (!course) return res.status(404).send("This course wasn't found.'");
+
+  const json = course.toJSON();
+  json.topics = json.topics.map((topic) => topic.name);
+
+  res.send(json);
 });
 
 router.post("/", validate(validateCourse), async (req, res) => {

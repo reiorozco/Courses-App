@@ -4,6 +4,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 
 const courseRoutes = require("../routes/courseRoutes");
+const topicRoutes = require("../routes/topicRoutes");
 const errorHandler = require("../middleware/error");
 
 module.exports = function (app) {
@@ -17,6 +18,7 @@ module.exports = function (app) {
 
   // Routes
   app.use("/api/courses", courseRoutes);
+  app.use("/api/topics", topicRoutes);
 
   // Error Handler
   app.use(errorHandler);

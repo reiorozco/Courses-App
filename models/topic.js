@@ -3,7 +3,7 @@ const Joi = require("joi");
 
 const TopicModel = (connection) => {
   return connection.define(
-    "Topic",
+    "topics",
     {
       name: {
         type: DataTypes.STRING,
@@ -13,6 +13,7 @@ const TopicModel = (connection) => {
     },
     {
       timestamps: false,
+      freezeTableName: true,
     }
   );
 };
