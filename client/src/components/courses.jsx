@@ -17,6 +17,7 @@ import { DeleteIcon } from "@chakra-ui/icons";
 
 import { deleteCourse, getCourses } from "../services/courseService";
 import { Link as ReachLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Courses() {
   const [courses, setCourses] = useState([]);
@@ -39,6 +40,7 @@ function Courses() {
 
     try {
       await deleteCourse(id);
+      toast.success("Course successfully deleted");
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
         console.log("This course has already been deleted.");

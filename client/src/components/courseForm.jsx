@@ -16,6 +16,7 @@ import Joi from "joi";
 import { getTopics } from "../services/topicService";
 import { getCourse, saveCourse } from "../services/courseService";
 import { CloseIcon } from "@chakra-ui/icons";
+import { toast } from "react-toastify";
 
 function CourseForm() {
   const [topics, setTopics] = useState([]);
@@ -86,12 +87,17 @@ function CourseForm() {
     setErrors(errors || {});
     if (errors) return;
 
-    setIsSubmitting(true);
-    await saveCourse(course);
+    try {
+      setIsSubmitting(true);
+      await saveCourse(course);
 
-    console.log("Form Submitted");
-    setIsSubmitting(false);
-    navigate("/");
+      console.log("Form Submitted");
+      toast.success("Course successfully saved");
+      navigate("/");
+    } catch (e) {
+      setIsSubmitting(false);
+      // navigate("/");
+    }
   };
 
   useEffect(() => {

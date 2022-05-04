@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 import NavBar from "./components/navBar";
@@ -7,10 +8,13 @@ import CourseForm from "./components/courseForm";
 import NotFound from "./components/notFound";
 
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
+
       <Routes>
         <Route index element={<Navigate to="/courses" />} />
 

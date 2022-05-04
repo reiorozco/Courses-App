@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = "http://localhost:3000/";
 
@@ -8,8 +9,8 @@ axios.interceptors.response.use(null, (error) => {
     error.response.status >= 400 &&
     error.response.status < 500;
 
-  if (!expectedError) {
-    console.log(error);
+  if (expectedError) {
+    toast.error(error.response.data);
   }
 
   return Promise.reject(error);
