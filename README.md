@@ -37,7 +37,7 @@ From the project folder, create a new folder with the name dev, inside, create a
     DB_HOST=localhost
     DB_NAME=yourDataBaseName*    
 
-You need this, for sequelize connection, the file that create this connection is in ./startup/database.js 
+You need this, for sequelize connection, the file that create this connection is in ./startup/db.js 
 
 ### Start the Server
 
@@ -50,8 +50,6 @@ This will launch the Node server on port 3000. If that port is busy, you can set
 Open up your browser and head over to:
 
 http://localhost:3000/api/courses
-
-You should see the list of books.
 
 **Important**, the requests that the client is making are to port 3000, if you have the server running on another port, you also need to change the address where the client is making the requests in the following file /client/src/services/httpService.js
 
